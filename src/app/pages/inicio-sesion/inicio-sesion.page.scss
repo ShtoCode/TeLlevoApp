@@ -23,6 +23,10 @@ ion-tittle{
   padding-top: 10%;
 }
 
+span {
+  font-size: 25px;
+}
+
 .contenido{
   background-color: rgb(235, 235, 235);
   height: 100%;
@@ -38,4 +42,8 @@ ion-tittle{
 
 .olvido{
   padding-top: 10px;
+}
+
+#cambiarpass{
+  cursor: pointer;
 }
