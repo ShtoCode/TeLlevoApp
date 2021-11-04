@@ -1,0 +1,40 @@
+<ion-header>
+  <div>
+    <ion-title class="titulo"><span style="color: white">TeLlevo</span><span style="color:yellow">App</span></ion-title>
+  </div>
+</ion-header>
+
+<ion-content>
+  <div class="contenido">
+    <div>
+      <h2>Modificar vehiculo</h2>
+    </div>
+    <div class="separacion">
+      <ion-item class="opacidad">
+        <ion-label position="floating">Patente</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <ion-item class="opacidad">
+        <ion-label position="floating">Marca</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <ion-item class="opacidad">
+        <ion-label position="floating">Modelo</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <ion-item class="opacidad">
+        <ion-label position="floating">Color</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="boton">
+      <div class="centrado">
+        <ion-button color="warning" (click)="alertaGuardado()" routerLink="/chofer">Guarda vehiculo</ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

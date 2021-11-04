@@ -1,0 +1,47 @@
+<ion-header>
+  <div>
+    <ion-title class="titulo"><span style="color: white">TeLlevo</span><span style="color:yellow">App</span></ion-title>
+  </div>
+</ion-header>
+
+<ion-content>
+  <div class="contenido">
+    <div>
+      <h2>Programacion del viaje</h2>
+    </div>
+    <div id="map"></div>
+    <div class="separacion">
+      <ion-item color="none" class="opacidad">
+        <ion-input type="text" placeholder="ingrese direccion" [(ngModel)]="dire"></ion-input>
+        <ion-button (click)="Direccion()" style="color: yellow;">Buscar</ion-button>
+      </ion-item>
+      
+      <div id="list">
+        <ion-list *ngFor="let d of WayListaDirecciones">
+          <ion-label (click)="Eliminar(d)">{{d.ubicacion}}</ion-label>
+        </ion-list>
+      </div>
+
+      <ion-item color="none" class="opacidad">
+        <ion-label position="floating">Hora de retorno</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <ion-item color="none" class="opacidad">
+        <ion-label position="floating">Tarifa</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="boton">
+      <div class="centrado">
+        <ion-button color="warning" (click)="alertaProga()" routerLink="/inicio-chofer">Programar viaje</ion-button>
+      </div>
+    </div>
+    <div class="boton">
+      <div class="centrado">
+        <ion-button color="warning" routerLink="/vehiculo-chofer">Modificar vehiculo</ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>
