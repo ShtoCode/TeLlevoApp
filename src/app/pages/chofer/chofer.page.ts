@@ -3,6 +3,10 @@ import { APIService } from 'src/app/api.service';
 import { NavController, LoadingController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 
+/* LIBRERIAS */
+import { ViajeI } from 'src/app/models/Viaje.interface';
+import { ViajeService } from 'src/app/viaje.service';
+
 //import para la geolocalizacion
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Button, Condition } from 'selenium-webdriver';
@@ -11,6 +15,8 @@ import { MarkerI } from 'src/app/models/MarkerI.interface';
 import { messaging } from 'firebase';
 import { isNgTemplate } from '@angular/compiler';
 
+console.log('hola')
+
 declare var google;
 @Component({
   selector: 'app-chofer',
@@ -18,6 +24,15 @@ declare var google;
   styleUrls: ['./chofer.page.scss'],
 })
 export class ChoferPage implements OnInit {
+  viaje: ViajeI={
+    dirInicial:'Duoc UC: Sede Puente Alto - Avenida San Carlos, Puente Alto',
+    dirFinal: '',
+    horaPartida: '',
+    tarifa: 0
+  }
+  
+
+  
   lat: number = -33.59786283845544;
   lng: number = -70.57877682275354;
 
@@ -26,16 +41,13 @@ export class ChoferPage implements OnInit {
   //perimte dibujar la ruta en el mapa
   direccionDisplay = new google.maps.DirectionsRenderer();
 
-  //ejemplo desde tu casa hasta la sede
   //punto de inicio de la ruta -33.39230581482144, -70.57305941725382
-  origen = { lat: -33.39230581482144, lng: -70.57305941725382 }
-  //putno de termino de la ruta
-  destino = { lat: -33.59786283845544, lng: -70.57877682275354 }
+  origen = { lat: -33.59786283845544, lng: -70.57877682275354 }
+  //variable que recupera la dirrecion escrita escrita por usuario / punto final
+  dire: string;
 
   map = null;
 
-  //variable que recupera la dirrecion escrita escrita por usuario
-  dire: string;
   //variable para almacenar direccion que entrega google
   direccion_go: string;
 
@@ -48,9 +60,24 @@ export class ChoferPage implements OnInit {
     private geoloc: Geolocation,
     private loadingCrtl: LoadingController,
     private api: APIService,
-    private alertCrtl: AlertController
+    private alertCrtl: AlertController,
+    private viajeServ: ViajeService,
+    private nav: NavController,
+    private loading: LoadingController
   ) { }
 
+
+  //Agregar viaje
+  async addViaje(){
+    const cargar = await this.loading.create({
+      message:'Guardando viaje...'
+    });
+    await cargar.present();
+    this.viajeServ.addViaje(this.viaje).then(()=>{
+      cargar.dismiss();
+      this.nav.navigateForward("/inicio-chofer")
+    });
+  }
 
   ngOnInit() {
     this.cargarMapa();
@@ -68,8 +95,8 @@ export class ChoferPage implements OnInit {
       this.direccion_go = data.results[0].formatted_address;
       console.log(data.results[0].geometry.location);
       this.latitud = data.results[0].geometry.location.lat;
-      this.longitud = data.results[0].geometry.location.lng;
       this.Pregunta();
+      this.longitud = data.results[0].geometry.location.lng;
     }, (e) => {
       console.log(e);
     }
@@ -202,7 +229,7 @@ export class ChoferPage implements OnInit {
   private calcularRuta() {
     this.direccionService.route({
       origin: this.origen,
-      destination: this.destino,
+      destination: this.dire,
       waypoints: this.wayPoints,
       optimizeWaypoints: true,
       travelMode: google.maps.TravelMode.DRIVING,

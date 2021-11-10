@@ -54,7 +54,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/notificacion-pgr-chofer/notificacion-pgr-chofer.module').then( m => m.NotificacionPgrChoferPageModule)
   },
   {
-    path: 'detalle/:id',
+    path: 'detalle/:nombre+apellido',
     loadChildren: () => import('./pages/detalle/detalle.module').then( m => m.DetallePageModule)
   },
 

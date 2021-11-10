@@ -9,9 +9,33 @@
     <div>
       <h2>Viajes programados</h2>
     </div>
-    <div class="separacion">
-
-    </div>
+    <div class="separacion"></div>
+    <div class="opacidad">
+    <ion-list>
+      <ion-list-sliding *ngFor="let reg of viajes">
+        <ion-item-divider>
+          <ion-label>
+            Dirección inicial: {{reg.dirInicial}}
+          </ion-label>
+        </ion-item-divider>
+        <ion-item-divider>
+          <ion-label>
+            Dirección Destino: {{reg.dirFinal}}
+          </ion-label>
+        </ion-item-divider>
+        <ion-item-divider>
+          <ion-label>
+            Hora partida: {{reg.horaPartida}}
+          </ion-label>
+        </ion-item-divider>
+        <ion-item-divider>
+          <ion-label>
+            Tarifa: {{reg.tarifa}}
+          </ion-label>
+        </ion-item-divider>
+      </ion-list-sliding>
+    </ion-list>
+  </div>
 
     <div class="boton">
       <div class="centrado">

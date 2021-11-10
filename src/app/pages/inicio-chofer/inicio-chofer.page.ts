@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ViajeI } from 'src/app/models/Viaje.interface';
+import { ViajeService } from 'src/app/viaje.service';
 
 @Component({
   selector: 'app-inicio-chofer',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioChoferPage implements OnInit {
 
-  constructor() { }
+  viajes: ViajeI[];
 
-  ngOnInit() {
+  constructor(private viajeServ: ViajeService) { }
+
+  ngOnInit():void{
+    this.viajeServ.getViajes().subscribe( resp=>{
+      this.viajes = resp;
+    });
   }
 
 }

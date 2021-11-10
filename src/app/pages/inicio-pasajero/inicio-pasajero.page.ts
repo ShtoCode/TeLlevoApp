@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 /*librerias */
-import { PersonaI } from 'src/app/models/persona.inteface';
-import { PersonaService } from 'src/app/persona.service';
+import { PasajeroI } from 'src/app/models/Pasajero.inteface';
+import { PasajeroService } from 'src/app/pasajero.service';
 
 @Component({
   selector: 'app-inicio-pasajero',
@@ -9,14 +9,14 @@ import { PersonaService } from 'src/app/persona.service';
   styleUrls: ['./inicio-pasajero.page.scss'],
 })
 export class InicioPasajeroPage implements OnInit {
-  personas: PersonaI[];
+  pasajeros: PasajeroI[];
 
-  constructor(private personaServ: PersonaService) { }
+  constructor(private pasajeroSERV: PasajeroService) { }
 
   ngOnInit():void {
-    this.personaServ.getPersonas().subscribe(
+    this.pasajeroSERV.getPasajeros().subscribe(
       resp=>{
-        this.personas=resp;
+        this.pasajeros=resp;
       }
     );
   }

@@ -7,8 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 import { APIService } from 'src/app/api.service';
 
 //importar para ver los datos de la persona
-import { PersonaService } from 'src/app/persona.service';
-import { PersonaI } from 'src/app/models/persona.inteface';
+import { PasajeroService } from 'src/app/pasajero.service';
+import { PasajeroI } from 'src/app/models/Pasajero.inteface';
 //servicio del marcador
 import { MarkerI } from 'src/app/models/MarkerI.interface';
 /* Librerias de geolocalizacion*/
@@ -24,7 +24,7 @@ declare var google;
 })
 export class DetallePage implements OnInit {
   //para recuperar la persona
-  personas: PersonaI[];
+  pasajeros: PasajeroI[];
 
   lat: number = -33.59786283845544;
   lng: number = -70.57877682275354;
@@ -45,14 +45,15 @@ export class DetallePage implements OnInit {
   //variable que recupera la dirrecion escrita escrita por usuario
   dire: string;
 
-  persona: PersonaI = {
+  pasajero: PasajeroI = {
     Apellido: '',
-    Nombre: ''
+    Nombre: '',
+    Celular: '',
   };
-  personaId = null;
+  pasajeroId = null;
 
   constructor(
-    private personaServ: PersonaService,
+    private pasajeroSERV: PasajeroService,
     private geoloc: Geolocation,
     private nav: NavController,
     private loadingCrtl: LoadingController,
@@ -64,7 +65,7 @@ export class DetallePage implements OnInit {
 
   ngOnInit() {
     this.cargarMapa();
-    this.personaId = this.route.snapshot.params['id'];
+    this.pasajeroId = this.route.snapshot.params['id'];
     //para recuperar persona
 
   }
@@ -178,9 +179,9 @@ export class DetallePage implements OnInit {
       message: 'cargando...'
     });
     await loading.present();
-    this.personaServ.getPersona(this.personaId).subscribe(resp => {
+    this.pasajeroSERV.getPasajero(this.pasajeroId).subscribe(resp => {
       loading.dismiss();
-      this.persona = resp;
+      this.pasajero = resp;
       console.log(resp);
     });
   }

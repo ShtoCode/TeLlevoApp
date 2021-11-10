@@ -4,16 +4,25 @@
 
 export const environment = {
   production: false,
+
   firebaseConfig : {
-    apiKey: "AIzaSyChk10A_d-MFQvJQcbxX1r2GFalynMCNm0",
-    authDomain: "registroapp-b9c99.firebaseapp.com",
-    projectId: "registroapp-b9c99",
-    storageBucket: "registroapp-b9c99.appspot.com",
-    messagingSenderId: "454037704569",
-    appId: "1:454037704569:web:ccfc861b494b2bf2a169a8",
-    measurementId: "G-XN3VLNJCGQ"
+
+    apiKey: "AIzaSyDK3-_-Gwgwg0k0nurOBvz8rbK1mWrrYF4",
+  
+    authDomain: "tellevoapp-dae67.firebaseapp.com",
+  
+    projectId: "tellevoapp-dae67",
+  
+    storageBucket: "tellevoapp-dae67.appspot.com",
+  
+    messagingSenderId: "394692179088",
+  
+    appId: "1:394692179088:web:0e81a2e5bdc7ae6e545415"
+  
   }
+  
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
